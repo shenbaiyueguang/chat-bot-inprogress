@@ -8,13 +8,9 @@ def add(name)
 	"
 end
 
-person = Person.new
-add(:name)
-add(:gender)
-person.name = "perte"
-puts person.name
 while input = gets
-	file = File.new("eval test.rb","r+")
+	eval "add(:#{input})"
+	file = File.new("selfrewrite.rb","r+")
 	context = file.read
 	context.insert(context.split("Person")[0].length+7,"attr_accessor :#{input}")
 	file.pos = 0
