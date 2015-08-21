@@ -1,3 +1,14 @@
+class String
+	def sentences
+		gsub(/\n|\r/,' ').split(/\.\s*/)
+	end
+	
+	def words
+		scan(/\w[\w\'\-]*/)
+	end
+
+end
+
 class WordPlay
 	def self.switch_pronouns(text)
 		text.gsub(/\b(You are|I am|I|You|Your|My|me|Are you|don't you)\b/i) do |pronoun|
@@ -26,15 +37,19 @@ class WordPlay
 		end.sub(/^me\b/i, 'i')
 	end
 
-	
+	def self.best_sentence(sentences, desired_words)
+		renked_sentence = sentences.sort_by do |s|
+			s.words.length - (s.downcase.words - desired_words).length
+		end
+
+		ranked_sentence.last
+	end
 
 
 end
-=begin
 
-teststring = "you make me happy"
-puts WordPlay.switch_pronouns(teststring)=end
-=end
+=begin
+
 while input = gets
 	if input[0...4].downcase.chomp == 'am i'
 		puts '>>no.'
@@ -42,3 +57,4 @@ while input = gets
 	end
 	puts '>>' + WordPlay.switch_pronouns(input).chomp + '?'
 end
+=end
