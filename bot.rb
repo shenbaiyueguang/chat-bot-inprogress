@@ -13,11 +13,15 @@ class Bot
 		end
 	end
 
+	def response_to(input)
+		prepared_input = preprocess(input).downcase
+	end
+
 	def greeting
 		random_response(:greeting)
 	end
 
-	def :farewell
+	def farewell
 		random_response(:farewell)
 	end
 
@@ -27,6 +31,11 @@ class Bot
 		@data[:responses][key][random_index].gsub(/\[name\]/, @name)
 	end
 
+	def preprocess(input)
+		substitutions input
+	end
+
+	def substitutions(input)
+		@data[:presubs].each do {|sub| input.gsub!(sub[0], sub[1])}
+	end
 end
-
-

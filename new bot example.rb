@@ -1,4 +1,4 @@
-require 'bot'
+require_relative 'bot'
 
 bot = Bot.new(:name => "Evan", :data => "Evan.bot")
 
