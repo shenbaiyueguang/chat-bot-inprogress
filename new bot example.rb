@@ -1,6 +1,6 @@
 require_relative 'bot'
 
-bot = Bot.new(:name => "Evan", :data => "Evan.bot")
+bot = Bot.new(:name => "Evan", :data => "botdata")
 
 puts bot.greeting
 
