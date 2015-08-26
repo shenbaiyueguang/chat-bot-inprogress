@@ -1,9 +1,4 @@
 require 'yaml'
-=begin
-name = Bot.Name
-thing = Bot.thing
-=end
-
 
 bot_data = {
 	:presubs => [
@@ -17,7 +12,7 @@ bot_data = {
 			"What?",
 			"Huh?"
 		],
-		:greeting => ["hi. I'm *. Want to chat?"],
+		:greeting => ["hi. I'm [name]. Want to chat?"],
 		:farewell => ["BYE!"],
 		'hello'	=> [
 			"How's things going?",
@@ -30,6 +25,6 @@ bot_data = {
 	}
 }
 
-f = File.open('bot_data',"w+")
+f = File.open('botdata',"w+")
 f.write bot_data.to_yaml
 f.close

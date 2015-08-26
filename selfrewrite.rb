@@ -1,3 +1,4 @@
+=begin
 class Person
 attr_accessor :name
 end
@@ -17,4 +18,16 @@ while input = gets
 	file.write context
 	file.close
 	puts '>> done'
+end
+=end
+require 'yaml'
+class Self_rewrite
+	def self.rewrite(stimulus, response, path)
+		@data = YAML.load(File.read(path))
+		@data[:responses][stimulus.chomp] = []
+		response.each {|s| @data[:responses][stimulus.chomp] << s.chomp}
+		f = File.open(path, "w+")
+		f.write @data.to_yaml
+		f.close
+	end
 end

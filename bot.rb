@@ -1,5 +1,6 @@
 require 'yaml'
 require_relative 'wordplay'
+require_relative 'selfrewrite'
 
 class Bot
 	attr_reader :name
@@ -33,6 +34,26 @@ class Bot
 		f = File.open("unknownresponses", "a+")
 		f.write sentence + "\n"
 		f.close
+	end
+
+	def learn
+		@stimulus = ''
+		@respondent = []
+		puts "learn mode on"
+		puts "stimulus?"
+		@stimulus = gets
+		puts "respondent?"
+		while 1
+			@k = gets
+			if @k.chomp != 'L'
+				@respondent << @k
+			else
+				break
+			end
+		end
+		Self_rewrite.rewrite(@stimulus, @respondent, @datapath)
+		puts "learn mode off, back to normal"
+		@data = YAML.load(File.read(@datapath))
 	end
 
 	private
