@@ -1,4 +1,5 @@
-=begin
+=begin
+
 class Person
 attr_accessor :name
 end
@@ -19,7 +20,8 @@ while input = gets
 	file.close
 	puts '>> done'
 end
-=end
+=end
+
 require 'yaml'
 class Self_rewrite
 	def self.rewrite(stimulus, response, path)

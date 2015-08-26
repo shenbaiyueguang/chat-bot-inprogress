@@ -1,4 +1,5 @@
 require_relative 'bot'
+# encoding: UTF-8
 
 bot = Bot.new(:name => "Evan", :data => "botdata")
 

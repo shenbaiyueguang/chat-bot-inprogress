@@ -1,4 +1,5 @@
 require 'yaml'
+# encoding: UTF-8
 require_relative 'wordplay'
 require_relative 'selfrewrite'
 
@@ -39,10 +40,10 @@ class Bot
 	def learn
 		@stimulus = ''
 		@respondent = []
-		puts "learn mode on"
-		puts "stimulus?"
+		puts "学习模式：开始"
+		puts "请教给我新的姿势！"
 		@stimulus = gets
-		puts "respondent?"
+		puts "我该说些什么呢？"
 		while 1
 			@k = gets
 			if @k.chomp != 'L'
@@ -52,7 +53,8 @@ class Bot
 			end
 		end
 		Self_rewrite.rewrite(@stimulus, @respondent, @datapath)
-		puts "learn mode off, back to normal"
+		puts "学习模式：关闭"
+		greeting
 		@data = YAML.load(File.read(@datapath))
 	end
 

@@ -1,5 +1,5 @@
 require 'yaml'
-
+# encoding: UTF-8
 bot_data = {
 	:presubs => [
 		["dont", "don't"], 
@@ -12,7 +12,7 @@ bot_data = {
 			"What?",
 			"Huh?"
 		],
-		:greeting => ["hi. I'm [name]. Want to chat?"],
+		:greeting => ["嘿你好！我是[name]。一起聊聊天吗？"],
 		:farewell => ["BYE!"],
 		'hello'	=> [
 			"How's things going?",
