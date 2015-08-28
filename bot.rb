@@ -52,7 +52,7 @@ class Bot
 				break
 			end
 		end
-		Self_rewrite.rewrite(preprocess(@stimulus), @respondent, @datapath)
+		Self_rewrite.rewrite(@stimulus, @respondent, @datapath)
 		puts "学习模式：关闭"
 		greeting
 		@data = YAML.load(File.read(@datapath))
@@ -70,7 +70,7 @@ class Bot
 	end
 
 	def substitutions(input)
-		@data[:presubs].each {|sub| sub[0].each {|subs| input.gsub!(subs, sub[1])}}
+		@data[:presubs].each { |sub| input.gsub!(sub[0], sub[1])}
 		input
 	end
 
