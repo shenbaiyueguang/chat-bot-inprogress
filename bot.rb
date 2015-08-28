@@ -54,8 +54,13 @@ class Bot
 		end
 		Self_rewrite.rewrite(preprocess(@stimulus), @respondent, @datapath)
 		puts "学习模式：关闭"
-		greeting
 		@data = YAML.load(File.read(@datapath))
+	end
+
+	def dictionary
+		puts "path?"
+		@dict_path = gets
+		Self_rewrite.dictionary_input(@dict_path, @datapath)
 	end
 
 	private
