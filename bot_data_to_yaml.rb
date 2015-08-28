@@ -2,9 +2,9 @@ require 'yaml'
 # encoding: UTF-8
 bot_data = {
 	:presubs => [
-		["dont", "don't"], 
-		["youre", "your're"], 
-		["love", "like"]
+		[["dont"], "don't"], 
+		[["youre"], "your're"], 
+		[["love"], "like"]
 	],
 	:responses => {
 		:default =>[
@@ -18,7 +18,7 @@ bot_data = {
 			"How's things going?",
 			"How do you do?"
 		],
-		"I like *" => [
+		"i like *" => [
 			"Why do you like *?",
 			"wow! Me too!"
 		] 

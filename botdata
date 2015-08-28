@@ -1,10 +1,11 @@
 ---
 :presubs:
-- - dont
+- - - dont
   - don't
-- - youre
+- - - youre
   - your're
-- - love
+- - - love
+    - lll
   - like
 :responses:
   :default:
@@ -12,12 +13,12 @@
   - What?
   - Huh?
   :greeting:
-  - "嘿你好！我是[name]。一起聊聊天吗？"
+  - "鍢夸綘濂斤紒鎴戞槸[name]銆備竴璧疯亰鑱婂ぉ鍚楋紵"
   :farewell:
   - BYE!
   hello:
   - How's things going?
   - How do you do?
-  I like *:
+  i like *:
   - Why do you like *?
   - wow! Me too!
