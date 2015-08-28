@@ -5,7 +5,6 @@
 - - - youre
   - your're
 - - - love
-    - lll
   - like
 :responses:
   :default:
@@ -13,7 +12,7 @@
   - What?
   - Huh?
   :greeting:
-  - "鍢夸綘濂斤紒鎴戞槸[name]銆備竴璧疯亰鑱婂ぉ鍚楋紵"
+  - "嘿你好！我是[name]。一起聊聊天吗？"
   :farewell:
   - BYE!
   hello:

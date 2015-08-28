@@ -26,7 +26,6 @@ require 'yaml'
 class Self_rewrite
 	def self.rewrite(stimulus, response, path)
 		@data = YAML.load(File.read(path))
-		@data[:responses][stimulus.chomp] = []
 		response.each {|s| @data[:responses][stimulus.chomp] << s.chomp}
 		f = File.open(path, "w+")
 		f.write @data.to_yaml
