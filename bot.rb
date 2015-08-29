@@ -14,12 +14,14 @@ class Bot
 			raise "Can't load bot data"
 		end
 		@data = YAML.load(File.read(@datapath))
+		@next = {}
+		@next_existence = false
 	end
 
 	def response(input)
 		prepared_input = preprocess(input.downcase)
 		sentence = process_sentence(prepared_input)
-		response = possible_responses(sentence)
+		response = possible_responses(sentence.chomp)
 		response[rand(response.length)]
 	end
 
@@ -40,10 +42,10 @@ class Bot
 	def learn
 		@stimulus = ''
 		@respondent = []
-		puts "学习模式：开始"
-		puts "请教给我新的姿势！"
+		puts ">>学习模式：开始"
+		puts ">>请教给我新的姿势！"
 		@stimulus = gets
-		puts "我该说些什么呢？"
+		puts ">>我该说些什么呢？"
 		while 1
 			@k = gets
 			if @k.chomp != 'L'
@@ -53,19 +55,21 @@ class Bot
 			end
 		end
 		Self_rewrite.rewrite(preprocess(@stimulus), @respondent, @datapath)
-		puts "学习模式：关闭"
+		puts ">>学习模式：关闭"
 		@data = YAML.load(File.read(@datapath))
 	end
 
 	def dictionary
-		puts "path?"
-		@dict_path = gets
+		puts ">>path?"
+		@dict_path = gets.chomp
 		Self_rewrite.dictionary_input(@dict_path, @datapath)
+		puts ">>字典录入完成!"
+		@data = YAML.load(File.read(@datapath))
 	end
 
 	private
 
-	def random_response(key)
+	def random_response(key) 
 		random_index = rand(@data[:responses][key].length)
 		@data[:responses][key][random_index].gsub(/\[name\]/, @name)
 	end
@@ -87,28 +91,48 @@ class Bot
 	end
 
 	def possible_responses(sentence)
-		responses = []
-
-		@data[:responses].keys.each do |pattern|
-			next unless pattern.is_a?(String)
-			if sentence.match('\b' + pattern.gsub(/\*/, '') + '\b') #''?""? i think it should be ""
-				if pattern.include?('*')
-					responses << @data[:responses][pattern].collect do |phrase|
-						tempo = sentence.sub(/^.*#{pattern}\s+/, '')
-						phrase.sub('*', WordPlay.switch_pronouns(tempo))
-					end
-				else
-					responses << @data[:responses][pattern]
-				end
-			end
-		end
-
-		if responses.empty? == true
-			responses << @data[:responses][:default]
+		@responses = []
+		find_responses_in(@next, sentence)
+		find_responses_in(@data[:responses], sentence) if @responses.empty? == true
+		if @responses.empty? == true
+			@responses << @data[:responses][:default]
 			add_unknown(sentence)
 		end
-
-		responses.flatten
+		@next = {} if @next_existence == false
+		@next_existence = false
+		@responses.flatten
 	end
+
+
+	def find_responses_in(group, sentence)
+		group.keys.each do |pattern|
+			next unless pattern.is_a?(String)
+			if sentence.match(pattern.gsub(/\*/, '') ) 
+				if pattern.include?('*')
+					group[pattern].collect do |phrase|
+						if phrase.is_a?(String)
+							tempo = sentence.sub(/^.*#{pattern}\s+/, '')
+							@responses << phrase.sub('*', WordPlay.switch_pronouns(tempo))
+						elsif phrase.is_a?(Hash)
+							@next.merge!(phrase) 
+							@next_existence = true
+						end
+					end
+				else
+					group[pattern].collect do |phrase|
+						if phrase.is_a?(String)
+							@responses << phrase
+						elsif phrase.is_a?(Hash)
+							@next.merge!(phrase) 
+							@next_existence = true
+						end
+					end
+				end
+				break
+			end
+		end
+		
+	end
+
 
 end

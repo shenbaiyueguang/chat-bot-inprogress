@@ -4,14 +4,16 @@ require_relative 'bot'
 bot = Bot.new(:name => "Evan", :data => "botdata")
 
 puts bot.greeting
-
-while input = gets and input.chomp != 'bye'
-	if input[0...3] == "LMO"
+f = File.open("testfile", "r")
+while input = f.readline and input.chomp != 'bye'
+	puts input
+	if input.chomp == "LMO"
 		bot.learn
-	elsif input == "DICT"
+	elsif input.chomp == "DICT"
 		bot.dictionary
 	else
 	puts ">>" + bot.response(input)
 	end
 end
+puts 'bye'
 puts bot.farewell

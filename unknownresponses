@@ -22,3 +22,20 @@ i like taling to you
 exit 
 no 
 \exit 
+dict 
+[a 
+l like to talk to you 
+how 
+准备好接受测试了么！ 
+你这个人很违和 
+你违和  
+现在测试连续对话 看看上下对话的触发 
+上一句话是为了测试两字词语会不会干扰到识别更多的更长的词语 
+[a 
+、听说有些人的特质是事与愿违和祸不单行 
+happy 
+i am very happy now because you are talking to me 
+l 
+happy 
+下面测试句子的上下句影响 
+why did you say that 

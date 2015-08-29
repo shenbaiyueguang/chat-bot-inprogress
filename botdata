@@ -7,17 +7,34 @@
 - - - love
   - like
 :responses:
-  :default:
-  - I don't understand.
-  - What?
-  - Huh?
+  "准备好接受测试了么":
+  - "请将炮火集中到我身上！来吧！true man don't look at explosions!"
+  "事与愿违和祸不单行":
+  - "事与愿违和祸不单行是弗拉格综合症的体现"
   :greeting:
   - "嘿你好！我是[name]。一起聊聊天吗？"
   :farewell:
   - BYE!
-  hello:
-  - How's things going?
-  - How do you do?
   i like *:
   - Why do you like *?
   - wow! Me too!
+  :default:
+  - I don't understand.
+  - What?
+  - Huh?
+  - "我不知道你在说什么"
+  - "诶，什么？"
+  - "臣妾听不明白"
+  hello:
+  - How's things going?
+  - How do you do?
+  - why did you say that:
+    - wow ISN'T IT  OBVIOUS?
+  happy:
+  - i m very happy because you are talking to me
+  - i m happy right now because i m talking to you
+  - i m glad
+  - i m happy right now because i m talking to you
+  - why are you happy?
+  "违和":
+  - "这一点也不！"
